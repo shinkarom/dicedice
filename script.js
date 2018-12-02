@@ -70,8 +70,11 @@ function openLink(elem){
 	window.open(this[elem](),'_blank');
 }
 
-function bodyLoad(){
+function processParams(){
 	if(window.location.search==='?type=all')window.location.replace(anything());
+}
+
+function bodyLoad(){
 	let thisNames = [...itemNames,'anything'];	
 	thisNames.map((elem)=>document.getElementById(elem).addEventListener('click',(e)=>{openLink(elem);e.preventDefault();}));
 }

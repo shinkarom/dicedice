@@ -71,7 +71,7 @@ function openLink(elem){
 }
 
 function bodyLoad(){
+	if(window.location.search==='?type=all')window.location.replace(anything());
 	let thisNames = [...itemNames,'anything'];	
 	thisNames.map((elem)=>document.getElementById(elem).addEventListener('click',(e)=>{openLink(elem);e.preventDefault();}));
-	thisNames.map((elem)=>document.getElementById(elem).href=this[elem]());
 }

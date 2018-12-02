@@ -66,7 +66,12 @@ function anything(){
 	return this[itemNames.random()]();
 }
 
+function openLink(elem){
+	window.open(this[elem](),'_blank');
+}
+
 function bodyLoad(){
-	let thisNames = [...itemNames,'anything'];
-	thisNames.map((elem)=>document.getElementById(elem).addEventListener('click',()=>window.open(this[elem](),'_blank')));
+	let thisNames = [...itemNames,'anything'];	
+	thisNames.map((elem)=>document.getElementById(elem).addEventListener('click',(e)=>{openLink(elem);e.preventDefault();}));
+	thisNames.map((elem)=>document.getElementById(elem).href=this[elem]());
 }

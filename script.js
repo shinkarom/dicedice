@@ -46,8 +46,8 @@ function wikiquotes(){
 }
 
 function wikisources(){
-	let langs = ['als','id','bs','br','ca','cs','cy','da','de','en','es','eu','fr','frr','gl','hr','hy','is','it','la','lt','li','nl','or','pms','pl','pt','ro','sk','sl','fi','sv','vi','tr','el','ru','sr','uk','he','yi','ar','fa','bn','pa','ml','th','ko','ja','zh',''];
-	let lang = langs.random();
+	let langs = ['als','id','bs','br','ca','cs','cy','da','de','en','es','eu','fr','frr','gl','hr','hy','is','it','la','lt','li','nl','or','pms','pl','pt','ro','sk','sl','fi','sv','vi','tr','el','ru','sr','uk','he','yi','ar','fa','bn','pa','ml','th','ko','ja','zh'];
+	let lang = coin()?langs.random():'';
 	let dot = lang==''?'':'.';
 	return `https://${lang}${dot}wikisource.org/wiki/Special:Random`;
 }

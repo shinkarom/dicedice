@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+	<script src="script.js"></script>
+	<script>
+	processParams();
+	</script>
     <title>DiceDice - for more variety</title>
 	<link rel="stylesheet" href="normalize.css">
 	<link rel="stylesheet" href="sakura.css">
 	<link rel="stylesheet" href="styles.css">
 	<style>
-	</style>
-	<script src="script.js"></script>
-	<script>processParams();</script>
+	</style>	
   </head>
   <body onload="bodyLoad()">
   <header>
@@ -24,25 +26,18 @@
   <p>You can also open this page with an URL parameter to redirect automatically. For example: <code>https://shinkarom.github.io/dicedice?type=all</code> to open a random link from any site on this page.</p>
   	<h2>Main</h2>
 	<ul>
-		<li><a href="?type=all" target="_blank" id="anything">Anything</a> <code>(?type=all)</code></li>
-	</ul>
-  <h2>Wikimedia</h2>
-	<ul>	
-		<li><a href="#" id="wikipedia">Wikipedia</a> (<a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">only English</a>)</li>
-		<li><a href="#" id="wiktionary">Wiktionary</a> (<a href="https://en.wiktionary.org/wiki/Special:Random" target="_blank">only English</a>)</li>
-		<li><a href="#" id="wikiquotes">Wikiquotes</a> (<a href="https://en.wikiquote.org/wiki/Special:Random" target="_blank">only English</a>)</li>
-		<li><a href="#" id="wikinews">Wikinews</a> (<a href="https://en.wikinews.org/wiki/Special:Random" target="_blank">only English</a>)</li>
-		<li><a href="#" id="wikisources">Wikisources</a> (<a href="https://en.wikisource.org/wiki/Special:Random" target="_blank">only English</a>)</li>
-		<li><a href="#" id="wikibooks">Wikibooks</a> (<a href="https://en.wikibooks.org/wiki/Special:Random" target="_blank">only English</a>)</li>
-		<li><a href="#" id="wikiversity">Wikiversity</a> (<a href="https://en.wikiversity.org/wiki/Special:Random" target="_blank">only English</a>)</li>
-		<li><a href="#" id="wikivoyages">Wikivoyages</a> (<a href="https://en.wikivoyage.org/wiki/Special:Random" target="_blank">only English</a>)</li>
+		<li><a href="?type=all" target="_blank" id="full"><strong>All</strong></a> <code>(?type=all)</code></li>
+		<li><a href="#" id="pedia">Wikipedia</a> </li>
+		<li><a href="#" id="tionary">Wiktionary</a> </li>
+		<li><a href="#" id="quotes">Wikiquotes</a> </li>
+		<li><a href="#" id="news">Wikinews</a> </li>
+		<li><a href="https://wikisource.org/wiki/Special:Random" id="source">Wikisource</a> </li>
+		<li><a href="#" id="books">Wikibooks</a> </li>
+		<li><a href="#" id="versity">Wikiversity</a> </li>
+		<li><a href="#" id="voyage">Wikivoyages</a> </li>
 		<li><a href="https://commons.wikimedia.org/wiki/Special:Random" target="_blank">Wikimedia Commons</a></li>
 		<li><a href="https://wikidata.org/wiki/Special:Random" target="_blank">Wikidata</a></li>
 		<li><a href="https://species.wikimedia.org/wiki/Special:Random" target="_blank">Wikispecies</a></li>		
-	</ul>
-	<h2>Other</h2>
-	<ul>
-		<li><a href="#" id="reddit">Reddit</a></li>
 	</ul>
   </main>
   <footer>

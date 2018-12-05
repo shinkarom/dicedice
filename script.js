@@ -1,5 +1,5 @@
 function randomItem (arr) {
-  return arr[Math.floor(Math.random() * this.length)]
+  return arr[Math.floor(Math.random() * arr.length)]
 }
 
 function wikiLink(lang,resource){

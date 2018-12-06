@@ -28,10 +28,12 @@ function wikiLink(lang,resource){
 	return `https://${lang}${lang===''?'':'.'}${resource}.org/wiki/Special:Random`
 }
 
-let itemNames = ['pedia', 'tionary', 'quotes', 'news', 'books', 'voyage', 'source', 'versity','commons','data','species']
+let itemNames = ['wikipedia', 'wiktionary', 'wikiquote', 'wikinews', 'wikibooks', 'wikivoyage', 'wikisource', 'wikiversity','wikicommons','wikidata','wikispecies']
+
+let linkLists = {};
 
 let LinkGenerator = class {
-  pedia () {
+  wikipedia () {
 	let tier1 = ['en','ceb','sv','de','fr','nl','ru','es','it','pl','war','vi','ja','zh','pt'];
 	let tier2 = ['uk','fa','ar','sr','ca','no','fi','sh','id','hu','ko','cs','ro','ms','tr','eu','eo','hy','bg','da','he','sk','zh-min-nan','kk','min','ce','hr','lt','et','sl','be','el','gl','ur','nn','simple','az','uz','la','th','hi','ka','vo','ta','azb','cy'];
 	let tier3 = ['ast','mk','tg','lv','mg','oc','tt','ky','bs','tl','sq','new','zh-yue','te','af','br','be-tarask','pms','bn','ml','lb','jv','ht','sco','mr','ga','sw','pnb','is','ba','cv','fy','my','su','nds','lmo','an','yo','ne','pa','gu','io','bar','scn','als','bpy','kn','ku','ckb','ia','qu','arz','mn','bat-smg','wuu','si','wa','gd','nap','yi','or','am','bug','cdo','map-bms','nsb','mai','fo','mzn','xmf','li','sah','ilo','sa','eml','vec','os','sd','mrj','mhr'];
@@ -42,7 +44,7 @@ let LinkGenerator = class {
 	return l
   }
 
-  tionary () {
+  wiktionary () {
    let tier1 = ['en','mg','fr'];
    let tier2 = ['sh','es','zh','ru','de','lt','nl','sv','pl','ku','el','it','ta','fi','tr','hu','ko','io','kn','ca','pt','vi','hy','chr','sr','hi','ja','ro','no','th','ml','id','et','uz','li','my','or','te'];
    let tier3 = ['fa','eo','cs','ar','jv','eu','az','gl','da','lo','br','uk','oc','hr','fj','tg','bg','ps','simple','cy','vo','is','wa','zh-min-nan','sk','scn','ast','la','he','af','tl','sw','fy','ky','nn'];
@@ -53,45 +55,74 @@ let LinkGenerator = class {
 	let l = langs.map(x=>wikiLink(x,'wiktionary'))
 	return l
   }
-  news () {
-    let langs = ['als', 'bs', 'ca', 'cs', 'de', 'el', 'en', 'es', 'fa', 'fr', 'it', 'hu', 'nl', 'no', 'nds', 'pl', 'pt', 'ro', 'sq', 'fi', 'sv', 'tr', 'bg', 'ru', 'sr', 'uk', 'he', 'ar', 'sd', 'ta', 'th', 'ko', 'ja', 'zh'].map(x=>wikiLink(x,'wikinews'))
-	return langs
+  wikinews () {
+    let tier1 = ['sr','en','fr','ru','de','pt','pl','es'];
+	let tier2 = ['it','zh','ar','cs','ca','nl','el','ta','sv','uk','fa','ro','tr','ja'];
+	let tier3 = ['sq','li','no','eo','hu','ko','fi','bs','he'];
+	let tier4 = ['bg','th','sd'];
+	let langs = getConcat([tier1,tier2,tier3,tier4]);
+	let l = langs.map(x=>wikiLink(x,'wikinews'))
+	return l
   }
-  books () {
-    let langs = ['af', 'als', 'az', 'id', 'ms', 'bs', 'cs', 'cy', 'da', 'de', 'et', 'en', 'es', 'eo', 'eu', 'fr', 'fy', 'gl', 'hr', 'ia', 'is', 'it', 'ku', 'la', 'lt', 'mg', 'nl', 'no', 'oc', 'pl', 'pt', 'ro', 'sq', 'sk', 'sl', 'fi', 'sv', 'tl', 'vi', 'tr', 'vo', 'el', 'ba', 'bg', 'be', 'kk', 'ky', 'mk', 'ru', 'sr', 'tt', 'tg', 'uk', 'cv', 'hy', 'ka', 'he', 'ar', 'fa', 'ur', 'bn', 'hi', 'mr', 'sa', 'ml', 'si', 'pa', 'ta', 'te', 'km', 'ne', 'th', 'ko', 'ja', 'zh'].map(x=>wikiLink(x,'wikibooks'))
-	return langs
+  wikibooks () {
+    let tier1 = ['en','hu','de','fr','pt','ja'];
+	let tier2 = ['it','nl','es','pl','th','he','id','fi','sq','fa','zh','ca','ru','az','vi','da','ko','sv','gl','sr','cs'];
+	let tier3 = ['hr','ba','no','ar','tr','ta','sa','sk','uk','is','ro','eo','hi','bn','simple','mk','bg','ka','ms','lt','tt','li','el','ur','sl','km','ang','tl','kk','et','be'];
+	let tier4 = ['ml','oc','lv','ia','ne','hy','eu','pa','la','cv','tg','fy','ie','ku','bs','cy','te','af','zh-min-nan','mr','mg','ky'];
+	let tier5 = ['sw','als','ast','uz','co','qu','got','za','nah','su','vo','kn','wa','na','zu','nds','ps','xh'];
+	let langs = getConcat([tier1,tier2,tier3,tier4,tier5]);
+	let l = langs.map(x=>wikiLink(x,'wikibooks'))
+	return l
   }
-  voyage () {
-    let langs = ['de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'fi', 'sv', 'ro', 'el', 'ru', 'uk', 'vi', 'he', 'fa', 'ps', 'bn', 'hi', 'zh'].map(x=>wikiLink(x,'wikivoyage'))
-	return langs
+  wikivoyage () {
+    let tier1 = ['en','de'];
+	let tier2 = ['fa','it','fr','pl','ru','nl','pt','zh','es','he','fi','vi','sv','el'];
+	let tier3 = ['ro','uk','bn','ps','hi'];
+	let langs = getConcat([tier1,tier2,tier3]);
+	let l = langs.map(x=>wikiLink(x,'wikibooks'))
+	return l
   }
-  quotes () {
-    let langs = ['af', 'als', 'id', 'bs', 'ca', 'cs', 'cy', 'da', 'de', 'en', 'es', 'eo', 'eu', 'fr', 'hr', 'is', 'it', 'ku', 'la', 'lb', 'lt', 'hu', 'nl', 'no', 'pl', 'pt', 'ro', 'sk', 'sl', 'fi', 'sv', 'tr', 'el', 'be', 'bg', 'ru', 'sah', 'sr', 'uk', 'hy', 'ka', 'he', 'ar', 'fa', 'ur', 'gu', 'mr', 'ta', 'th', 'ko', 'ja', 'zh', ''].map(x=>wikiLink(x,'wikiquote'))
-	return langs
+  wikiquote () {
+	let tier1 = ['en','it','pl','ru'];
+	let tier2 = ['cs','fa','de','pt','es','uk','sk','fr','bs','he','fi','tr','ca','sl','lt','th','bg','eo','zh','hy','hr','el','nn','id','az','ar','su','hu','li','sv'];
+	let tier3 = ['ko','nl','ja','et','la','simple','gu','sr','gl','ur','te','ta','cy','be','no','ml','vi','kn','ku','sah','eu','ro','hi','ka','da','sa','is'];
+	let tier4 = ['sq','mr','br','af','uz','ast','ang','lb','zh-min-nan','am','co','wo','ky','kk','ga'];
+    let langs = getConcat([tier1,tier2,tier3,tier4]);
+	let l = langs.map(x=>wikiLink(x,'wikiquote'))
+	return l
   }
-  source () {
-	return [wikiLink('','wikisource')]
+  wikisource () {
+	let tier1 = ['en','pl','ru','de','fr','zh','he','it','es','']
+	let tier2 = ['ar','cs','pt','fa','hu','gu','ml','ko','sv','bn','sr','sa','sl','te','uk','el','ro','fi'];
+	let tier3 = ['hy','ja','vi','th','az','ta','ca','br','kh','nl','hr','la','is','no','vec','eo','tr','et','be','mk','da','pms','yi','id','bg','li','mr','as'];
+	let tier4 = ['or','bs','gl','sah','lt','sk','eu','pa','cy'];
+	let tier5 = ['zh-min-nan','ht','fo','ang'];
+	let langs = getConcat([tier1,tier2,tier3,tier4,tier5]);
+	let l = langs.map(x=>wikiLink(x,'wikisource'))
+	return l
   }
-  versity () {
-    let langs = ['cs', 'de', 'en', 'es', 'fr', 'it', 'ko', 'pt', 'sl', 'fi', 'sv', 'el', 'ru', 'ar', 'hi', 'ja', 'zh', 'beta'].map(x=>wikiLink(x,'wikiversity'))
-	return langs
+  wikiversity () {
+	let tier1 = ['de','en','fr','beta'];
+	let tier2 = ['ru','it','cs','pt','es','ar'];	
+	let tier3 = ['zh','sv','fi','sl','el','hi','ko','ja'];
+    let langs = getConcat([tier1,tier2,tier3]);
+	let l = langs.map(x=>wikiLink(x,'wikiversity'))
+	return l
   }
-  commons () {
+  wikicommons () {
     return [wikiLink('','commons.wikimedia')];
   }
-  data(){
+  wikidata(){
 	  return [wikiLink('','wikidata')];
   }
-  species(){
-	  return [wikiLink('','wikispecies')];
+  wikispecies(){
+	  return [wikiLink('','species.wikimedia')];
   }
   full () {
-    let items = this[randomItem([...itemNames, 'commons','data','species'])]();
+    let items = this[randomItem(itemNames)]();
     return items
   }
 }
-
-let linkLists = {};
 
 function openLink (elem) {
    window.open(randomItem(linkLists[elem]), '_blank')

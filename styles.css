@@ -1,0 +1,11 @@
+#fulldiv {
+	width: 100%;
+	background-color: bisque;
+	padding: 50px;
+	text-align: center;
+	font-size: 5rem;
+	border-radius: 20px;
+}
+#fulldiv:hover {
+	background-color: burlywood;
+}

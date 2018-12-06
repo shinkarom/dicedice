@@ -2,6 +2,28 @@ function randomItem (arr) {
   return arr[Math.floor(Math.random() * arr.length)]
 }
 
+function getConcat(arr){
+	let res = [];
+	if(arr.length==0) return [];
+	else for(let i = 0;i<arr.length;i++){
+		for(let j = 1;j<=arr.length-i;j++){
+			res = res.concat(arr[i]);
+		} 
+	}
+	return res;
+}
+
+function getPush(arr){
+	let res = [];
+	if(arr.length==0) return [];
+	else for(let i = 0;i<arr.length;i++){
+		for(let j = 1;j<=arr.length-i;j++){
+			res.push(arr[i]);			
+		} 
+	}
+	return res;
+}
+
 function wikiLink(lang,resource){
 	return `https://${lang}${lang===''?'':'.'}${resource}.org/wiki/Special:Random`
 }
@@ -10,13 +32,25 @@ let itemNames = ['pedia', 'tionary', 'quotes', 'news', 'books', 'voyage', 'sourc
 
 let LinkGenerator = class {
   pedia () {
-	let l = ['ace', 'af', 'ak', 'als', 'an', 'roa-rup', 'frp', 'ast', 'atj', 'gn', 'ay', 'az', 'bjn', 'gor', 'id', 'ms', 'bm', 'zh-min-nan', 'map-bms', 'jv', 'min', 'su', 'bug', 'bcl', 'bi', 'bar', 'bs', 'br', 'ca', 'ceb', 'cs', 'ch', 'cbk-zam', 'ny', 'sn', 'tum', 'co', 'cy', 'da', 'pdc', 'de', 'nv', 'dsb', 'na', 'et', 'eml', 'ang', 'en', 'es', 'eo', 'ext', 'eu', 'ee', 'to', 'hif', 'fo', 'fr', 'fy', 'ff', 'fur', 'ga', 'gv', 'sm', 'gag', 'gd', 'gl', 'ki', 'ha', 'haw', 'hsb', 'hr', 'io', 'ig', 'ilo', 'ia', 'ie', 'ik', 'xh', 'zu', 'is', 'it', 'kbp', 'kl', 'pam', 'csb', 'kw', 'rw', 'rn', 'kg', 'sw', 'ht', 'ku', 'lad', 'ltg', 'la', 'lv', 'lb', 'lt', 'lij', 'li', 'ln', 'lfn', 'olo', 'jbo', 'lg', 'lmo', 'hu', 'mg', 'mt', 'mi', 'cdo', 'mwl', 'fj', 'nah', 'nap', 'nl', 'nds-nl', 'cr', 'frr', 'pih', 'no', 'nrm', 'nov', 'nn', 'uz', 'oc', 'om', 'pfl', 'pag', 'pap', 'jam', 'pcd', 'pms', 'nds', 'pl', 'pt', 'kaa', 'crh', 'ty', 'ksh', 'ro', 'rmy', 'rm', 'qu', 'se', 'sg', 'sc', 'sco', 'stq', 'nso', 'st', 'tn', 'sq', 'scn', 'simple', 'ss', 'sk', 'sl', 'szl', 'so', 'srn', 'sh', 'fi', 'sv', 'tl', 'kab', 'roa-tara', 'tet', 'din', 'vi', 'tpi', 'chy', 've', 'tr', 'tk', 'tw', 'za', 'vec', 'vep', 'vo', 'fiu-vro', 'wa', 'vls', 'war', 'wo', 'ts', 'yo', 'diq', 'zea', 'bat-smg', 'el', 'pnt', 'av', 'ady', 'kbd', 'ab', 'ba', 'be', 'be-tarask', 'bxr', 'bg', 'inh', 'os', 'kv', 'krc', 'ky', 'mrj', 'kk', 'lbe', 'lez', 'mk', 'mdf', 'mn', 'ce', 'mhr', 'koi', 'rue', 'ru', 'sah', 'cu', 'sr', 'tt', 'tg', 'tyv', 'udm', 'uk', 'xal', 'cv', 'myv', 'hy', 'xmf', 'ka', 'got', 'yi', 'he', 'ur', 'ar', 'ps', 'sd', 'pnb', 'fa', 'glk', 'mzn', 'arz', 'azb', 'lrc', 'ug', 'ckb', 'arc', 'dv', 'ks', 'new', 'ne', 'pi', 'bh', 'dty', 'gom', 'mai', 'mr', 'sa', 'hi', 'as', 'bpy', 'bn', 'pa', 'gu', 'or', 'ta', 'te', 'kn', 'tcy', 'ml', 'si', 'th', 'my', 'dz', 'bo', 'lo', 'km', 'iu', 'chr', 'ti', 'am', 'ko', 'zh', 'zh-classical', 'wuu', 'hak', 'ja', 'zh-yue', 'gan'].map(x=>wikiLink(x,'wikipedia'));
+	//let langs = ['ab', 'ace', 'ady', 'af', 'ak', 'als', 'am', 'an', 'ang', 'ar', 'arc', 'arz', 'as', 'ast', 'atj', 'av', 'ay', 'az', 'azb', 'ba', 'bar', 'bat-smg', 'bcl', 'be', 'be-tarask', 'bg', 'bh', 'bi', 'bjn', 'bm', 'bn', 'bo', 'bpy', 'br', 'bs', 'bug', 'bxr', 'ca', 'cbk-zam', 'cdo', 'ce', 'ceb', 'ch', 'chr', 'chy', 'ckb', 'co', 'cr', 'crh', 'cs', 'csb', 'cu', 'cv', 'cy', 'da', 'de', 'din', 'diq', 'dsb', 'dty', 'dv', 'dz', 'ee', 'el', 'eml', 'en', 'eo', 'es', 'et', 'eu', 'ext', 'fa', 'ff', 'fi', 'fiu-vro', 'fj', 'fo', 'fr', 'frp', 'frr', 'fur', 'fy', 'ga', 'gag', 'gan', 'gd', 'gl', 'glk', 'gn', 'gom', 'gor', 'got', 'gu', 'gv', 'ha', 'hak', 'haw', 'he', 'hi', 'hif', 'hr', 'hsb', 'ht', 'hu', 'hy', 'ia', 'id', 'ie', 'ig', 'ik', 'ilo', 'inh', 'io', 'is', 'it', 'iu', 'ja', 'jam', 'jbo', 'jv', 'ka', 'kaa', 'kab', 'kbd', 'kbp', 'kg', 'ki', 'kk', 'kl', 'km', 'kn', 'ko', 'koi', 'krc', 'ks', 'ksh', 'ku', 'kv', 'kw', 'ky', 'la', 'lad', 'lb', 'lbe', 'lez', 'lfn', 'lg', 'li', 'lij', 'lmo', 'ln', 'lo', 'lrc', 'lt', 'ltg', 'lv', 'mai', 'map-bms', 'mdf', 'mg', 'mhr', 'mi', 'min', 'mk', 'ml', 'mn', 'mr', 'mrj', 'ms', 'mt', 'mwl', 'my', 'myv', 'mzn', 'na', 'nah', 'nap', 'nds', 'nds-nl', 'ne', 'new', 'nl', 'nn', 'no', 'nov', 'nrm', 'nso', 'nv', 'ny', 'oc', 'olo', 'om', 'or', 'os', 'pa', 'pag', 'pam', 'pap', 'pcd', 'pdc', 'pfl', 'pi', 'pih', 'pl', 'pms', 'pnb', 'pnt', 'ps', 'pt', 'qu', 'rm', 'rmy', 'rn', 'ro', 'roa-rup', 'roa-tara', 'ru', 'rue', 'rw', 'sa', 'sah', 'sc', 'scn', 'sco', 'sd', 'se', 'sg', 'sh', 'si', 'simple', 'sk', 'sl', 'sm', 'sn', 'so', 'sq', 'sr', 'srn', 'ss', 'st', 'stq', 'su', 'sv', 'sw', 'szl', 'ta', 'tcy', 'te', 'tet', 'tg', 'th', 'ti', 'tk', 'tl', 'tn', 'to', 'tpi', 'tr', 'ts', 'tt', 'tum', 'tw', 'ty', 'tyv', 'udm', 'ug', 'uk', 'ur', 'uz', 've', 'vec', 'vep', 'vi', 'vls', 'vo', 'wa', 'war', 'wo', 'wuu', 'xal', 'xh', 'xmf', 'yi', 'yo', 'za', 'zea', 'zh', 'zh-classical', 'zh-min-nan', 'zh-yue', 'zu']
+	let tier1 = ['en','ceb','sv','de','fr','nl','ru','es','it','pl','war','vi','ja','zh','pt'];
+	let tier2 = ['uk','fa','ar','sr','ca','no','fi','sh','id','hu','ko','cs','ro','ms','tr','eu','eo','hy','bg','da','he','sk','zh-min-nan','kk','min','ce','hr','lt','et','sl','be','el','gl','ur','nn','simple','az','uz','la','th','hi','ka','vo','ta','azb','cy'];
+	let tier3 = ['ast','mk','tg','lv','mg','oc','tt','ky','bs','tl','sq','new','zh-yue','te','af','br','be-tarask','pms','bn','ml','lb','jv','ht','sco','mr','ga','sw','pnb','is','ba','cv','fy','my','su','nds','lmo','an','yo','ne','pa','gu','io','bar','scn','als','bpy','kn','ku','ckb','ia','qu','arz','mn','bat-smg','wuu','si','wa','gd','nap','yi','or','am','bug','cdo','map-bms','nsb','mai','fo','mzn','xmf','li','sah','ilo','sa','eml','vec','os','sd','mrj','mhr'];
+	let tier4 = ['hif','ps','roa-tara','diq','hak','pam','bcl','zh-classical','frr','nso','szl','se','ace','mi','km','nah','rue','nds-nl','nv','vls','bh','gan','crh','sc','vep','bo','glk','co','so','tk','fiu-vro','myv','lrc','kv','csb','as','gv','udm','zea','ay','ie','pcd','sn','ug','nrm','stq','lez','kw','lad','mwi','gn','gom','rm','lij','ab','koi','mt','fur','frp','dsb','haw','lo','ang','ln','lfn','ext','dv','cbk-zam','dty','kab','ksh','gag','olo','pi','pag','pfl','av','ha','bxr','xal','krc','pap','gor','kaa','bjn','za','pdc','rw','tyv','to','kl','nov','jam','arc','kbd','tpi','kbp','tet','ig','ki','na','jbo','lbe','roa-rup','ty','mdf','kg','bi','wo','lg','srn','zu'];
+	let tier5 = ['tcy','chr','ltg','sm','inh','om','xh','pih','cu','rmy','tw','bm','tn','atj','rn','chy','got','ts','tum','ak','st','sat','ch','ny','pnt','ss','fj','ady','iu','ee','ks','ve','ik','sg','ff','dz','ti','kr','din'];
+	//let langs = getConcat([tier1,tier2,tier3,tier4,tier5]);
+	let langs = getPush(tier1.concat(tier2).concat(tier3).concat(tier4).concat(tier5));
+	console.log(langs.length)
+	let l = langs.map(x=>wikiLink(x,'wikipedia'));
 	return l
   }
 
   tionary () {
-    let langs = ['ang', 'af', 'als', 'an', 'roa-rup', 'ast', 'gn', 'ay', 'az', 'id', 'ms', 'zh-min-nan', 'jv', 'su', 'bs', 'br', 'ca', 'cs', 'co', 'cy', 'da', 'de', 'na', 'et', 'en', 'es', 'eo', 'eu', 'fo', 'fr', 'fy', 'ga', 'gv', 'sm', 'gd', 'gl', 'ha', 'hr', 'io', 'ia', 'ie', 'ik', 'zu', 'is', 'it', 'kl', 'csb', 'kw', 'rw', 'sw', 'ku', 'la', 'lv', 'lb', 'lt', 'li', 'ln', 'jbo', 'hu', 'mg', 'mt', 'mi', 'fj', 'nah', 'nl', 'no', 'nn', 'oc', 'om', 'uz', 'nds', 'pl', 'pt', 'ro', 'qu', 'sg', 'st', 'tn', 'sq', 'scn', 'simple', 'ss', 'sk', 'sl', 'so', 'sh', 'fi', 'sv', 'tl', 'vi', 'tpi', 'tr', 'tk', 'za', 'vo', 'wa', 'wo', 'ts', 'el', 'be', 'bg', 'ky', 'kk', 'mk', 'mn', 'ru', 'sr', 'tt', 'tg', 'uk', 'hy', 'ka', 'yi', 'he', 'ur', 'ar', 'ps', 'pnb', 'sd', 'fa', 'ug', 'dv', 'ks', 'ne', 'mr', 'sa', 'hi', 'bn', 'pa', 'gu', 'or', 'ta', 'te', 'kn', 'ml', 'si', 'th', 'my', 'bo', 'lo', 'km', 'iu', 'chr', 'ti', 'am', 'ko', 'ja', 'zh'].map(x=>wikiLink(x,'wiktionary'))
-	return langs
+   // let langs = ['af', 'als', 'am', 'an', 'ang', 'ar', 'ast', 'ay', 'az', 'be', 'bg', 'bn', 'bo', 'br', 'bs', 'ca', 'chr', 'co', 'cs', 'csb', 'cy', 'da', 'de', 'dv', 'el', 'en', 'eo', 'es', 'et', 'eu', 'fa', 'fi', 'fj', 'fo', 'fr', 'fy', 'ga', 'gd', 'gl', 'gn', 'gu', 'gv', 'ha', 'he', 'hi', 'hr', 'hu', 'hy', 'ia', 'id', 'ie', 'ik', 'io', 'is', 'it', 'iu', 'ja', 'jbo', 'jv', 'ka', 'kk', 'kl', 'km', 'kn', 'ko', 'ks', 'ku', 'kw', 'ky', 'la', 'lb', 'li', 'ln', 'lo', 'lt', 'lv', 'mg', 'mi', 'mk', 'ml', 'mn', 'mr', 'ms', 'mt', 'my', 'na', 'nah', 'nds', 'ne', 'nl', 'nn', 'no', 'oc', 'om', 'or', 'pa', 'pl', 'pnb', 'ps', 'pt', 'qu', 'ro', 'roa-rup', 'ru', 'rw', 'sa', 'scn', 'sd', 'sg', 'sh', 'si', 'simple', 'sk', 'sl', 'sm', 'so', 'sq', 'sr', 'ss', 'st', 'su', 'sv', 'sw', 'ta', 'te', 'tg', 'th', 'ti', 'tk', 'tl', 'tn', 'tpi', 'tr', 'ts', 'tt', 'ug', 'uk', 'ur', 'uz', 'vi', 'vo', 'wa', 'wo', 'yi', 'za', 'zh' 'zh-min-nan', 'zu',]
+   let tier1 = ['en','mg','fr'];
+   let langs = getConcat([tier1]);
+	let l = langs.map(x=>wikiLink(x,'wiktionary'))
+	return l
   }
   news () {
     let langs = ['als', 'bs', 'ca', 'cs', 'de', 'el', 'en', 'es', 'fa', 'fr', 'it', 'hu', 'nl', 'no', 'nds', 'pl', 'pt', 'ro', 'sq', 'fi', 'sv', 'tr', 'bg', 'ru', 'sr', 'uk', 'he', 'ar', 'sd', 'ta', 'th', 'ko', 'ja', 'zh'].map(x=>wikiLink(x,'wikinews'))
@@ -53,11 +87,6 @@ let LinkGenerator = class {
 
 function openLink (elem) {
   window.open(randomItem(LinkGenerator.prototype[elem]()), '_blank')
-}
-
-function processParams () {
-  if (window.location.search === '?type=all')
-	  window.location.replace(LinkGenerator.prototype.full())
 }
 
 function bodyLoad () {

@@ -28,7 +28,7 @@ function wikiLink(lang,resource){
 	return `https://${lang}${lang===''?'':'.'}${resource}.org/wiki/Special:Random`
 }
 
-let itemNames = ['pedia', 'tionary', 'quotes', 'news', 'books', 'voyage', 'source', 'versity']
+let itemNames = ['pedia', 'tionary', 'quotes', 'news', 'books', 'voyage', 'source', 'versity','commons','data','species']
 
 let LinkGenerator = class {
   pedia () {
@@ -91,15 +91,24 @@ let LinkGenerator = class {
   }
 }
 
+let linkLists = {};
+
 function openLink (elem) {
-  window.open(randomItem(LinkGenerator.prototype[elem]()), '_blank')
+   window.open(randomItem(linkLists[elem]), '_blank')
 }
 
 function bodyLoad () {
-  [...itemNames, 'full'].map((elem) => {
+	itemNames.forEach((e)=>{
+		linkLists[e]=LinkGenerator.prototype[e]();
+	});
+  [...itemNames].map((elem) => {
 	  document.getElementById(elem).addEventListener('click', (e) => {
 		  openLink(elem)
 		  e.preventDefault()
 		  })
   })
+  document.getElementById('full').addEventListener('click',(e)=>{
+	window.open(randomItem(LinkGenerator.prototype.full()), '_blank')
+	e.preventDefault();
+  });
 }

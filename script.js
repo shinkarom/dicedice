@@ -28,8 +28,6 @@ function wikiLink(lang,resource){
 	return `https://${lang}${lang===''?'':'.'}${resource}.org/wiki/Special:Random`
 }
 
-let itemNames = ['wikipedia', 'wiktionary', 'wikiquote', 'wikinews', 'wikibooks', 'wikivoyage', 'wikisource', 'wikiversity','wikicommons','wikidata','wikispecies']
-
 let linkLists = {};
 
 let LinkGenerator = class {
@@ -119,8 +117,12 @@ let LinkGenerator = class {
 	  return [wikiLink('','species.wikimedia')];
   }
   full () {
-    let items = this[randomItem(itemNames)]();
-    return items
+	let tier1 = ['wikipedia','wikisource']
+	let tier2 = ['wikibooks','wikiversity','wikivoyage','wikiquote','wikinews','wikicommons']
+	let tier3 = ['wiktionary','wikidata','wikispecies']
+	let items = getConcat([tier1,tier2,tier3])
+    let item = this[randomItem(items)]();
+    return item
   }
 }
 
@@ -129,10 +131,11 @@ function openLink (elem) {
 }
 
 function bodyLoad () {
+	let itemNames = ['wikipedia','wiktionary','wikiquote','wikinews','wikisource','wikibooks','wikiversity','wikivoyage','wikicommons','wikidata','wikispecies']
 	itemNames.forEach((e)=>{
 		linkLists[e]=LinkGenerator.prototype[e]();
 	});
-  [...itemNames].map((elem) => {
+  itemNames.map((elem) => {
 	  document.getElementById(elem).addEventListener('click', (e) => {
 		  openLink(elem)
 		  e.preventDefault()

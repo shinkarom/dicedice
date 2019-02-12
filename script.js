@@ -3,16 +3,14 @@ function randomItem (arr) {
 }
 
 function getConcat(arr){
-	let res = [];
-	if(arr.length==0) return [];
-	else for(let i = 0;i<arr.length;i++){
-		let res2=[]
-		for(let j = 1;j<=arr.length-i;j++){
-			res2 = res2.concat(arr[i]);
+	const concatReducer = (acc,cur,idx,src) => {
+		let res=[]
+		for(let i = 1;i<=src.length-idx;i++){
+			res = res.concat(cur);
 		} 
-		res=res.concat(res2);
+		return acc.concat(res);
 	}
-	return res;
+	return (arr.length==0) ? [] : arr.reduce(concatReducer,[]);
 }
 
 function wikiLink(lang,resource){

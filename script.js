@@ -6,20 +6,11 @@ function getConcat(arr){
 	let res = [];
 	if(arr.length==0) return [];
 	else for(let i = 0;i<arr.length;i++){
+		let res2=[]
 		for(let j = 1;j<=arr.length-i;j++){
-			res = res.concat(arr[i]);
+			res2 = res2.concat(arr[i]);
 		} 
-	}
-	return res;
-}
-
-function getPush(arr){
-	let res = [];
-	if(arr.length==0) return [];
-	else for(let i = 0;i<arr.length;i++){
-		for(let j = 1;j<=arr.length-i;j++){
-			res.push(arr[i]);			
-		} 
+		res=res.concat(res2);
 	}
 	return res;
 }

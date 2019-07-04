@@ -17,7 +17,8 @@ function wikiLink(lang,resource){
 	return `https://${lang}${lang===''?'':'.'}${resource}.org/wiki/Special:Random`
 }
 
-let linkLists = {};
+let linkLists = {}
+let justen = false
 
 let LinkGenerator = class {
   wikipedia () {
@@ -26,7 +27,7 @@ let LinkGenerator = class {
 	let tier3 = ['ast','mk','tg','lv','mg','oc','tt','ky','bs','tl','sq','new','zh-yue','te','af','br','be-tarask','pms','bn','ml','lb','jv','ht','sco','mr','ga','sw','pnb','is','ba','cv','fy','my','su','nds','lmo','an','yo','ne','pa','gu','io','bar','scn','als','bpy','kn','ku','ckb','ia','qu','arz','mn','bat-smg','wuu','si','wa','gd','nap','yi','or','am','bug','cdo','map-bms','nsb','mai','fo','mzn','xmf','li','sah','ilo','sa','eml','vec','os','sd','mrj','mhr'];
 	let tier4 = ['hif','ps','roa-tara','diq','hak','pam','bcl','zh-classical','frr','nso','szl','se','ace','mi','km','nah','rue','nds-nl','nv','vls','bh','gan','crh','sc','vep','bo','glk','co','so','tk','fiu-vro','myv','lrc','kv','csb','as','gv','udm','zea','ay','ie','pcd','sn','ug','nrm','stq','lez','kw','lad','mwi','gn','gom','rm','lij','ab','koi','mt','fur','frp','dsb','haw','lo','ang','ln','lfn','ext','dv','cbk-zam','dty','kab','ksh','gag','olo','pi','pag','pfl','av','ha','bxr','xal','krc','pap','gor','kaa','bjn','za','pdc','rw','tyv','to','kl','nov','jam','arc','kbd','tpi','kbp','tet','ig','ki','na','jbo','lbe','roa-rup','ty','mdf','kg','bi','wo','lg','srn','zu'];
 	let tier5 = ['tcy','chr','ltg','sm','inh','om','xh','pih','cu','rmy','tw','bm','tn','atj','rn','chy','got','ts','tum','ak','st','sat','ch','ny','pnt','ss','fj','ady','iu','ee','ks','ve','ik','sg','ff','dz','ti','din'];
-	let langs = getConcat([tier1,tier2,tier3,tier4,tier5]);
+	let langs = justen?["en"]:getConcat([tier1,tier2,tier3,tier4,tier5]);
 	let l = langs.map(x=>wikiLink(x,'wikipedia'));
 	return l
   }
@@ -38,7 +39,7 @@ let LinkGenerator = class {
    let tier4 = ['co','lv','pnb','mn','ka','sl','sq','nds','nah','lb','bs','sa','kk','tk','km','sm','mk','hsb','bn','be','pa','ms','ga','ur','an','wo','vec','ang','tt','sd','gn','mr','so','csb','ug','gd','mt','st','roa-rup','si','ia','ie','kl','mi','ay'];
    let tier6 = ['ks','as','mo','pi'];
    let tier5 = ['jbo','fo','ln','zu','na','gu','gv','kw','rw','ts','ne','om','qu','ss','su','ha','iu','am','dv','za','tpi','ik','yi','ti','sg','tn'];
-   let langs = getConcat([tier1,tier2,tier3,tier4,tier5,tier6]);
+   let langs = justen?["en"]:getConcat([tier1,tier2,tier3,tier4,tier5,tier6]);
 	let l = langs.map(x=>wikiLink(x,'wiktionary'))
 	return l
   }
@@ -47,7 +48,7 @@ let LinkGenerator = class {
 	let tier2 = ['it','zh','ar','cs','ca','nl','el','ta','sv','uk','fa','ro','tr','ja'];
 	let tier3 = ['sq','li','no','eo','hu','ko','fi','bs','he'];
 	let tier4 = ['bg','th','sd'];
-	let langs = getConcat([tier1,tier2,tier3,tier4]);
+	let langs = justen?["en"]:getConcat([tier1,tier2,tier3,tier4]);
 	let l = langs.map(x=>wikiLink(x,'wikinews'))
 	return l
   }
@@ -57,7 +58,7 @@ let LinkGenerator = class {
 	let tier3 = ['hr','ba','no','ar','tr','ta','sa','sk','uk','is','ro','eo','hi','bn','simple','mk','bg','ka','ms','lt','tt','li','el','ur','sl','km','ang','tl','kk','et','be'];
 	let tier4 = ['ml','oc','lv','ia','ne','hy','eu','pa','la','cv','tg','fy','ie','ku','bs','cy','te','af','zh-min-nan','mr','mg','ky'];
 	let tier5 = ['sw','als','ast','uz','co','qu','got','za','nah','su','vo','kn','wa','na','zu','nds','ps','xh'];
-	let langs = getConcat([tier1,tier2,tier3,tier4,tier5]);
+	let langs = justen?["en"]:getConcat([tier1,tier2,tier3,tier4,tier5]);
 	let l = langs.map(x=>wikiLink(x,'wikibooks'))
 	return l
   }
@@ -65,7 +66,7 @@ let LinkGenerator = class {
     let tier1 = ['en','de'];
 	let tier2 = ['fa','it','fr','pl','ru','nl','pt','zh','es','he','fi','vi','sv','el'];
 	let tier3 = ['ro','uk','bn','ps','hi'];
-	let langs = getConcat([tier1,tier2,tier3]);
+	let langs = justen?["en"]:getConcat([tier1,tier2,tier3]);
 	let l = langs.map(x=>wikiLink(x,'wikibooks'))
 	return l
   }
@@ -74,7 +75,7 @@ let LinkGenerator = class {
 	let tier2 = ['cs','fa','de','pt','es','uk','sk','fr','bs','he','fi','tr','ca','sl','lt','th','bg','eo','zh','hy','hr','el','nn','id','az','ar','su','hu','li','sv'];
 	let tier3 = ['ko','nl','ja','et','la','simple','gu','sr','gl','ur','te','ta','cy','be','no','ml','vi','kn','ku','sah','eu','ro','hi','ka','da','sa','is'];
 	let tier4 = ['sq','mr','br','af','uz','ast','ang','lb','zh-min-nan','am','co','wo','ky','kk','ga'];
-    let langs = getConcat([tier1,tier2,tier3,tier4]);
+    let langs = justen?["en"]:getConcat([tier1,tier2,tier3,tier4]);
 	let l = langs.map(x=>wikiLink(x,'wikiquote'))
 	return l
   }
@@ -84,7 +85,7 @@ let LinkGenerator = class {
 	let tier3 = ['hy','ja','vi','th','az','ta','ca','br','kh','nl','hr','la','is','no','vec','eo','tr','et','be','mk','da','pms','yi','id','bg','li','mr','as'];
 	let tier4 = ['or','bs','gl','sah','lt','sk','eu','pa','cy'];
 	let tier5 = ['zh-min-nan','ht','fo','ang'];
-	let langs = getConcat([tier1,tier2,tier3,tier4,tier5]);
+	let langs = justen?["en"]:getConcat([tier1,tier2,tier3,tier4,tier5]);
 	let l = langs.map(x=>wikiLink(x,'wikisource'))
 	return l
   }
@@ -92,7 +93,7 @@ let LinkGenerator = class {
 	let tier1 = ['de','en','fr','beta'];
 	let tier2 = ['ru','it','cs','pt','es','ar'];	
 	let tier3 = ['zh','sv','fi','sl','el','hi','ko','ja'];
-    let langs = getConcat([tier1,tier2,tier3]);
+    let langs = justen?["en"]:getConcat([tier1,tier2,tier3]);
 	let l = langs.map(x=>wikiLink(x,'wikiversity'))
 	return l
   }
@@ -119,7 +120,8 @@ function openLink (elem) {
    window.open(randomItem(linkLists[elem]), '_blank')
 }
 
-function bodyLoad () {
+function redoLinkLists(){
+	justen = document.querySelector("#enonly").checked	
 	let itemNames = ['wikipedia','wiktionary','wikiquote','wikinews','wikisource','wikibooks','wikiversity','wikivoyage','wikicommons','wikidata','wikispecies']
 	itemNames.forEach((e)=>{
 		linkLists[e]=LinkGenerator.prototype[e]();
@@ -130,6 +132,13 @@ function bodyLoad () {
 		  e.preventDefault()
 		  })
   })
+}
+
+function bodyLoad () {
+	redoLinkLists()
+	document.querySelector("#enonly").addEventListener('click',(e)=>{
+		redoLinkLists();
+	})
   document.getElementById('full').addEventListener('click',(e)=>{
 	window.open(randomItem(LinkGenerator.prototype.full()), '_blank')
 	e.preventDefault();

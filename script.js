@@ -2,17 +2,6 @@ function randomItem (arr) {
   return arr[Math.floor(Math.random() * arr.length)]
 }
 
-function getConcat(arr){
-	const concatReducer = (acc,cur,idx,src) => {
-		let res=[]
-		for(let i = 1;i<=src.length-idx;i++){
-			res = res.concat(cur);
-		} 
-		return acc.concat(res);
-	}
-	return (arr.length==0) ? [] : arr.reduce(concatReducer,[]);
-}
-
 function wikiLink(lang,resource){
 	return `https://${lang}${lang===''?'':'.'}${resource}.org/wiki/Special:Random`
 }
@@ -80,10 +69,7 @@ let LinkGenerator = class {
 	  return [wikiLink('','species.wikimedia')];
   }
   full () {
-	let tier1 = ['wikipedia','wikisource']
-	let tier2 = ['wikibooks','wikiversity','wikivoyage','wikiquote','wikinews','wikicommons']
-	let tier3 = ['wiktionary','wikidata','wikispecies']
-	let items = [].concat(tier1,tier2,tier3);
+	let fullList = ['wikipedia','wikisource','wikibooks','wikiversity','wikivoyage','wikiquote','wikinews','wikicommons','wiktionary','wikidata','wikispecies]
     let item = this[randomItem(items)]();
     return item
   }

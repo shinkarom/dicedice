@@ -62,7 +62,7 @@ let LinkGenerator = class {
     return [wikiLink('','commons.wikimedia')];
   }
   full () {
-	let fullList = ['wikipedia','wikisource','wikibooks','wikiversity','wikivoyage','wikiquote','wikinews','wikicommons','wiktionary']
+	let fullList = ['wikipedia','wiktionary','wikiquote','wikinews','wikisource','wikibooks','wikiversity','wikivoyage','wikicommons']
     let item = this[randomItem(fullList)]();
     return item
   }

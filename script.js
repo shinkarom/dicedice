@@ -61,8 +61,11 @@ let LinkGenerator = class {
   wikicommons () {
     return [wikiLink('','commons.wikimedia')];
   }
+  goodreads () {
+	 return ["https://www.goodreads.com/book/random"];
+  }
   full () {
-	let fullList = ['wikipedia','wiktionary','wikiquote','wikinews','wikisource','wikibooks','wikiversity','wikivoyage','wikicommons']
+	let fullList = ['wikipedia','wiktionary','wikiquote','wikinews','wikisource','wikibooks','wikiversity','wikivoyage','wikicommons','goodreads']
     let item = this[randomItem(fullList)]();
     return item
   }
@@ -73,7 +76,7 @@ function openLink (elem) {
 }
 
 function redoLinkLists(){
-	let itemNames = ['wikipedia','wiktionary','wikiquote','wikinews','wikisource','wikibooks','wikiversity','wikivoyage','wikicommons']
+	let itemNames = ['wikipedia','wiktionary','wikiquote','wikinews','wikisource','wikibooks','wikiversity','wikivoyage','wikicommons','goodreads']
 	itemNames.forEach((e)=>{
 		linkLists[e]=LinkGenerator.prototype[e]();
 	});

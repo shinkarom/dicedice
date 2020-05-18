@@ -6,6 +6,8 @@ function wikiLink(lang,resource){
 	return `https://${lang}${lang===''?'':'.'}${resource}.org/wiki/Special:Random`
 }
 
+var gensList = ['wikipedia','wiktionary','wikiquote','wikinews','wikisource','wikibooks','wikiversity','wikivoyage','wikicommons','goodreads']
+
 let linkLists = {}
 
 let LinkGenerator = class {
@@ -65,8 +67,7 @@ let LinkGenerator = class {
 	 return ["https://www.goodreads.com/book/random"];
   }
   full () {
-	let fullList = ['wikipedia','wiktionary','wikiquote','wikinews','wikisource','wikibooks','wikiversity','wikivoyage','wikicommons','goodreads']
-    let item = this[randomItem(fullList)]();
+    let item = this[randomItem(gensList)]();
     return item
   }
 }
@@ -76,11 +77,10 @@ function openLink (elem) {
 }
 
 function redoLinkLists(){
-	let itemNames = ['wikipedia','wiktionary','wikiquote','wikinews','wikisource','wikibooks','wikiversity','wikivoyage','wikicommons','goodreads']
-	itemNames.forEach((e)=>{
+	gensList.forEach((e)=>{
 		linkLists[e]=LinkGenerator.prototype[e]();
 	});
-  itemNames.map((elem) => {
+  gensList.map((elem) => {
 	  document.getElementById(elem).addEventListener('click', (e) => {
 		  openLink(elem)
 		  e.preventDefault()
